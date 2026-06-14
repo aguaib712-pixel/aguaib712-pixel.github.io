@@ -500,10 +500,12 @@
   const GAME_SCALE = 1.0;
   const COLS = 10, ROWS = 16;
   const DROP_MS = 620;
-  const _cellFit = Math.min((win.innerWidth - 24) / (COLS + 1), (win.innerHeight - 170) / ROWS);
+  const BTN_H = 52; // 控制按钮高度（固定值，不再随格子放大）
+  // 垂直预留 = 猫坐在面板上方的高度(CAT_H-BOTTOM_PAD) + 面板内非棋盘部分(≈110，含按钮高)
+  const _vReserve = (CAT_H - BOTTOM_PAD) + BTN_H + 110;
+  const _cellFit = Math.min((win.innerWidth - 24) / (COLS + 1), (win.innerHeight - _vReserve) / ROWS);
   const CELL = Math.round(Math.max(16, Math.min(46, _cellFit)) * GAME_SCALE);
-  const BTN_H = Math.max(48, Math.round(CELL * 2.4)); // 控制按钮高度
-  // ================================
+  // 控制按钮高度
   const PIECES = [
     { m: [[1,1,1,1]],       c: '#7fb0a8' },
     { m: [[1,1],[1,1]],     c: '#d8b86a' },
